@@ -2,16 +2,16 @@
 
 ## Demo
 ### Trang Chủ
-<!-- ![Alt text](https://i.ibb.co/6ncrPjC/BCCO-INDEX.png "Home Page") -->
+![Alt text](https://i.ibb.co/MBSg0Dr/BPTV-INDEX.png "Home Page")
 
 ### Trang Danh Sách Phim
-<!-- ![Alt text](https://i.ibb.co/KbcbpLR/BCCO-CATALOG.png "Catalog Page") -->
+![Alt text](https://i.ibb.co/vZ6FKCN/BPTV-CATALOG.png "Catalog Page")
 
 ### Trang Thông Tin Phim
-<!-- ![Alt text](https://i.ibb.co/X8HJm5L/BCCO-SINGLE.png "Single Page") -->
+![Alt text](https://i.ibb.co/gwTv76L/BPTV-SINGLE.png "Single Page")
 
 ### Trang Xem Phim
-<!-- ![Alt text](https://i.ibb.co/d7RdmPx/BCCO-EPISODE.png "Episode Page") -->
+![Alt text](https://i.ibb.co/zFL4LKT/BPTV-EPISODE.png "Episode Page")
 
 ## Requirements
 https://github.com/hacoidev/ophim-core
@@ -26,17 +26,17 @@ https://github.com/hacoidev/ophim-core
 
 ## Document
 ### List
-- Trang chủ: `display_label|relation|find_by_field|value|limit|show_more_url`
-    + Ví dụ theo định dạng: `Phim bộ mới||type|series|12|/danh-sach/phim-bo`
-    + Ví dụ theo định dạng: `Phim lẻ mới||type|single|12|/danh-sach/phim-bo`
-    + Ví dụ theo thể loại: `Phim hành động|categories|slug|hanh-dong|12|/the-loai/hanh-dong`
-    + Ví dụ theo quốc gia: `Phim hàn quốc|regions|slug|han-quoc|12|/quoc-gia/han-quoc`
-    + Ví dụ với các field khác: `Phim chiếu rạp||is_shown_in_theater|1|12|`
+- Trang chủ: `display_label|relation|find_by_field|value|limit|show_more_url|show_template (slider_poster|section_thumb)`
+    + Ví dụ theo định dạng: `Phim bộ mới||type|series|12|/danh-sach/phim-bo|slider_poster`
+    + Ví dụ theo định dạng: `Phim lẻ mới||type|single|12|/danh-sach/phim-bo|section_thumb`
+    + Ví dụ theo thể loại: `Phim hành động|categories|slug|hanh-dong|12|/the-loai/hanh-dong|slider_poster`
+    + Ví dụ theo quốc gia: `Phim hàn quốc|regions|slug|han-quoc|12|/quoc-gia/han-quoc|section_thumb`
+    + Ví dụ với các field khác: `Phim chiếu rạp||is_shown_in_theater|1|12|#|slider_poster`
 
-- Danh sách hot:  `Label|relation|find_by_field|value|sort_by_field|sort_algo|limit`
-    + `Phim sắp chiếu||status|trailer|publish_year|desc|9`
-    + `Top phim bộ||type|series|view_total|desc|9`
-    + `Top phim lẻ||type|single|view_total|desc|9`
+- Danh sách hot:  `Label|relation|find_by_field|value|sort_by_field|sort_algo|limit|show_template (top_text|top_thumb)`
+    + `Phim sắp chiếu||status|trailer|publish_year|desc|9|top_text`
+    + `Top phim bộ||type|series|view_total|desc|9|top_thumb`
+    + `Top phim lẻ||type|single|view_total|desc|9|top_thumb`
 
 ### Custom View Blade
 - File blade gốc trong Package: `/vendor/ophimcms/theme-bptv/resources/views/themebptv`
