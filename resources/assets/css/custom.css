@@ -1,0 +1,21 @@
+ul.server-list {
+    margin-top: 2px;
+}
+
+.ad-container {
+    display: inline-block;
+    text-align: center;
+}
+.ad-container a{
+    margin-top: 5px;
+    display: block;
+}
+
+.backup-server a.btn-episode {
+    cursor: pointer;
+    padding: 7px;
+}
+
+#jwplayer {
+    height: 100% !important;
+}
