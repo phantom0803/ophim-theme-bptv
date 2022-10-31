@@ -198,9 +198,9 @@
             @foreach ($currentMovie->episodes->sortBy([['server', 'asc']])->groupBy('server') as $server => $data)
                 <div class="server clearfix server-group">
                     <h3 class="server-name"> {{ $server }} </h3>
-                    <ul class="list-episode">
+                    <ul class="row list-episode">
                         @foreach ($data->sortByDesc('name', SORT_NATURAL)->groupBy('name') as $name => $item)
-                            <li class="episode">
+                            <li class="episode col-xs-3 col-sm-2 col-lg-1">
                                 <a class="btn-episode episode-link btn3d black @if ($item->contains($episode)) active @endif"
                                     title="{{ $name }}"
                                     href="{{ $item->sortByDesc('type')->first()->getUrl() }}">{{ $name }}</a>
@@ -265,24 +265,25 @@
     </script>
 
     <script>
+        var episode_id = {{$episode->id}};
         const wrapper = document.getElementById('media-player');
         const vastAds = "{{ Setting::get('jwplayer_advertising_file') }}";
 
         function chooseStreamingServer(el) {
             const type = el.dataset.type;
-            const link = el.dataset.link;
+            const link = el.dataset.link.replace(/^http:\/\//i, 'https://');
             const id = el.dataset.id;
 
             const newUrl =
                 location.protocol +
                 "//" +
                 location.host +
-                location.pathname +
-                "?id=" + id;
+                location.pathname.replace(`-${episode_id}`, `-${id}`);
 
             history.pushState({
                 path: newUrl
             }, "", newUrl);
+            episode_id = id;
 
 
             Array.from(document.getElementsByClassName('streaming-server')).forEach(server => {
@@ -290,7 +291,6 @@
             })
             el.classList.add('active');
 
-            link.replace('http://', 'https://');
             renderPlayer(type, link, id);
         }
 
@@ -481,9 +481,7 @@
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
-            const episode = urlParams.get('id')
+            const episode = '{{$episode->id}}';
             let playing = document.querySelector(`[data-id="${episode}"]`);
             if (playing) {
                 playing.click();
@@ -500,7 +498,7 @@
     <script type="text/javascript">
         var URL_POST_RATING = '{{ route('movie.rating', ['movie' => $currentMovie->slug]) }}';
         var URL_POST_REPORT_ERROR =
-            '{{ route('episodes.report', ['movie' => $currentMovie->slug, 'episode' => $episode->slug]) }}';
+            '{{ route('episodes.report', ['movie' => $currentMovie->slug, 'episode' => $episode->slug, 'id' => $episode->id]) }}';
         var rated = false;
     </script>
     <script type="text/javascript" src="/themes/bptv/js/film.notiny.js"></script>

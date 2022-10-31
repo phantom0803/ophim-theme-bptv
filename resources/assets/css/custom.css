@@ -19,3 +19,22 @@ ul.server-list {
 #jwplayer {
     height: 100% !important;
 }
+
+.list-episode .episode {
+    display: inline-block;
+    text-align: center;
+    padding: 3px;
+    margin: 0 !important;
+}
+
+.list-episode .episode a {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.btn3d {
+    padding: 0 !important;
+    width: 100%;
+}

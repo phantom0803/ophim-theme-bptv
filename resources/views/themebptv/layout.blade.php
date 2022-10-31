@@ -97,7 +97,16 @@
     <script type="text/javascript" src="{{ asset('/themes/bptv/js/jquery-2.1.0.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/themes/bptv/js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/themes/bptv/js/fx/util.js') }}"></script>
-
+    <script>
+        jQuery(document).ready(function(t) {
+            $(".AAIco-arrow_upward").click(function() {
+                $("html, body").animate({
+                    scrollTop: 0
+                }, "slow");
+                return false;
+            });
+        })
+    </script>
     {!! setting('site_scripts_google_analytics') !!}
 @endsection
 
