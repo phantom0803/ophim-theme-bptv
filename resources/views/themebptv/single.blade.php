@@ -115,7 +115,7 @@
                         <br />
                         (<strong class="num-rating">{{ $currentMovie->rating_count ?? 0 }}</strong> lượt, đánh giá: <strong
                             id="average_score">{{ number_format($currentMovie->rating_star ?? 0, 1) }}</strong>
-                        trên 10)<br />
+                        trên {{ $currentMovie->rating_count ?? 0 }})<br />
                         <span class="post-ratings-text" id="hint"></span>
                     </div>
                     <div style="display: none;" itemprop="aggregateRating" itemscope
@@ -156,7 +156,7 @@
                                         ->sortBy([['name', 'desc'], ['type', 'desc']])
                                         ->sortByDesc('name', SORT_NATURAL)
                                         ->unique('name')
-                                        ->take(5)
+                                        ->take(3)
                                         ->map(function ($episode) {
                                             echo '<a href="' . $episode->getUrl() . '">' . $episode->name . '</a>';
                                         });

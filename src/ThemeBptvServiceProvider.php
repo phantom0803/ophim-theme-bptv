@@ -53,8 +53,8 @@ class ThemeBptvServiceProvider extends ServiceProvider
                         'name' => 'hotest',
                         'label' => 'Danh sách hot',
                         'type' => 'code',
-                        'hint' => 'Label|relation|find_by_field|value|sort_by_field|sort_algo|limit|show_template (top_text|top_thumb)',
-                        'value' => "Top phim lẻ||type|single|view_total|desc|9|top_text\r\nTop phim bộ||type|series|view_total|desc|9|top_thumb",
+                        'hint' => 'Label|relation|find_by_field|value|sort_by_field|sort_algo|limit|show_template (top_text|top_thumb|top_poster)',
+                        'value' => "Phim sắp chiếu||status|trailer|publish_year|desc|4|top_poster\r\nTop phim lẻ||type|single|view_total|desc|9|top_text\r\nTop phim bộ||type|series|view_total|desc|9|top_thumb",
                         'attributes' => [
                             'rows' => 5
                         ],

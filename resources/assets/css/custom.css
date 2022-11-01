@@ -38,3 +38,57 @@ ul.server-list {
     padding: 0 !important;
     width: 100%;
 }
+
+.Wdgt .block-movie {
+    padding: 10px;
+    background: rgb(19, 19, 19);
+}
+.Wdgt .block-movie a {
+    margin-bottom: 5px;
+    display: block;
+    position: relative;
+}
+.Wdgt .block-movie a:hover > span {
+    background: rgba(0, 0, 0, 0.8) none repeat scroll 0% 0%;
+}
+.Wdgt .block-movie a:hover {
+    opacity: 0.8;
+}
+
+.Wdgt .block-movie a img {
+    width: 100%;
+    height: 157px;
+}
+.Wdgt .block-movie span {
+    background: rgba(0, 0, 0, 0.5) none repeat scroll 0% 0%;
+    display: block;
+    bottom: 0px;
+    position: absolute;
+    width: 100%;
+    color: #FFF;
+    padding: 5px;
+}
+.Wdgt .block-movie span h3 {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    color: #f5c864;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    margin: 5px 0px;
+}
+.Wdgt .block-movie span h4 {
+    color: #FFF;
+    font-size: 12px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    text-decoration: none;
+    margin: 0px;
+}
