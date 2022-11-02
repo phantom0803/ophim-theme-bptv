@@ -23,7 +23,7 @@
                 <span class="Date AAIco-date_range">{{ $movie->publish_year }}</span>
             </p>
             <div class="Description">
-                <p>{!! mb_substr($movie->content, 0, 142, 'utf-8') !!}...</p>
+                <p>{!! mb_substr(strip_tags($movie->content), 0, 142, 'utf-8') !!}...</p>
                 <p class="Director AAIco-videocam">
                     <span>Đạo diễn:</span>
                     {{ count($movie->directors) ? $movie->directors->first()['name'] : 'N/A' }}
