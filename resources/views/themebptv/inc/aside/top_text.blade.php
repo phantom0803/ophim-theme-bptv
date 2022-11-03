@@ -1,5 +1,5 @@
 <section class="Wdgt">
-    <div class="Title"><h4 class="Lnk AAIco-movie_filter">&nbsp; &nbsp;{{ $item['label'] }}</h4></div>
+    <div class="Title"><div class="Lnk AAIco-movie_filter">&nbsp; &nbsp;{{ $item['label'] }}</div></div>
     <ul class="MovieList Newepisode">
         @foreach ($item['data'] as $movie)
             <li>

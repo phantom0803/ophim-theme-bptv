@@ -1,6 +1,6 @@
 <section class="Wdgt" id="showChonLoc">
     <div class="Title">
-        <h4 class="Lnk fa-film">&nbsp; &nbsp;{{ $item['label'] }}</h4>
+        <div class="Lnk fa-film">&nbsp; &nbsp;{{ $item['label'] }}</div>
     </div>
     <ul class="MovieList block-movie">
         @foreach ($item['data'] as $movie)
