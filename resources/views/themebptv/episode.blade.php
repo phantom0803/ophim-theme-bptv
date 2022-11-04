@@ -213,7 +213,7 @@
         <div class="Wdgt">
             <div class="Title">Bình luận</div>
             <div class="fb-comments" data-href="{{ $currentMovie->getUrl() }}" data-width="100%"
-                data-colorscheme="dark" data-numposts="5" data-order-by="reverse_time" data-lazy="true"></div>
+                data-colorscheme="light" data-numposts="5" data-order-by="reverse_time" data-lazy="true"></div>
         </div>
         <div class="Wdgt">
             <div class="Title">Có thể bạn muốn xem?</div>

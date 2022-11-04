@@ -20,6 +20,11 @@ ul.server-list {
     height: 100% !important;
 }
 
+.server-group .list-episode {
+    max-height: 300px;
+    overflow: auto;
+}
+
 .list-episode .episode {
     display: inline-block;
     text-align: center;

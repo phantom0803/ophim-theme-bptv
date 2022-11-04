@@ -142,8 +142,12 @@
         <div class="MovieInfo TPost Single">
             <div class="MovieTabNav">
                 <div class="Lnk on AAIco-description" data-Mvtab="MvTb-Info">Thông tin phim</div>
+                @if (count($currentMovie->actors))
                 <div class="Lnk AAIco-movie_filter" data-Mvtab="MvTb-Cast">Diễn viên</div>
+                @endif
+                @if ($currentMovie->trailer_url)
                 <div class="Lnk AAIco-video_call" data-Mvtab="MvTb-Trailer">Trailer</div>
+                @endif
                 <div class="Lnk AAIco-collections" data-Mvtab="MvTb-Image">Hình ảnh</div>
             </div>
             <div class="MvTbCn on anmt" id="MvTb-Info">
@@ -173,17 +177,19 @@
                                     return '<a href="' . $category->getUrl() . '" title="' . $category->name . '">' . $category->name . '</a>';
                                 })->implode(', ') !!}
                         </li>
-                        <li class="AAIco-adjust"><strong>Đạo diễn:</strong>
-                            {!! $currentMovie->directors->map(function ($director) {
-                                    return '<a href="' .
-                                        $director->getUrl() .
-                                        '" tite="Đạo diễn ' .
-                                        $director->name .
-                                        '">' .
-                                        $director->name .
-                                        '</a>';
-                                })->implode(', ') !!}
-                        </li>
+                        @if (count($currentMovie->directors))
+                            <li class="AAIco-adjust"><strong>Đạo diễn:</strong>
+                                {!! $currentMovie->directors->map(function ($director) {
+                                        return '<a href="' .
+                                            $director->getUrl() .
+                                            '" tite="Đạo diễn ' .
+                                            $director->name .
+                                            '">' .
+                                            $director->name .
+                                            '</a>';
+                                    })->implode(', ') !!}
+                            </li>
+                        @endif
                         <li class="AAIco-adjust"><strong>Quốc gia:</strong>
                             {!! $currentMovie->regions->map(function ($region) {
                                     return '<a href="' . $region->getUrl() . '" title="' . $region->name . '">' . $region->name . '</a>';
@@ -194,10 +200,10 @@
                 <div class="mvici-right">
                     <ul class="InfoList">
                         <li class="AAIco-adjust"><strong>Thời lượng:</strong>
-                            {{ $currentMovie->episode_time }}
+                            {{ $currentMovie->episode_time ?: "Đang cập nhật" }}
                         </li>
                         <li class="AAIco-adjust"><strong>Tổng số tập:</strong>
-                            {{ $currentMovie->episode_total }}
+                            {{ $currentMovie->episode_total ?: "Đang cập nhật" }}
                         </li>
                         <li class="AAIco-adjust"><strong>Độ phân giải:</strong> <span
                                 class="quality">{{ $currentMovie->quality }}</span></li>
@@ -208,49 +214,49 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-            <div class="MvTbCn anmt" id="MvTb-Cast">
-                <ul class="ListCast Rows AF A06 B03 C02 D20 E02">
-                    {!! $currentMovie->actors->map(function ($actor) {
-                            return '<li><a href="' .
-                                $actor->getUrl() .
-                                '" title="Diễn viên ' .
-                                $actor->name .
-                                '"><figure> <span class="Objf"><img src="/themes/bptv/images/cast-image.png" alt="Diễn viên ' .
-                                $actor->name .
-                                '"></span><figcaption>' .
-                                $actor->name .
-                                '</figcaption></figure></a></li>';
-                        })->implode('') !!}
-                </ul>
-            </div>
+            @if (count($currentMovie->actors))
+                <div class="MvTbCn anmt" id="MvTb-Cast">
+                    <ul class="ListCast Rows AF A06 B03 C02 D20 E02">
+                        {!! $currentMovie->actors->map(function ($actor) {
+                                return '<li><a href="' .
+                                    $actor->getUrl() .
+                                    '" title="Diễn viên ' .
+                                    $actor->name .
+                                    '"><figure> <span class="Objf"><img src="/themes/bptv/images/cast-image.png" alt="Diễn viên ' .
+                                    $actor->name .
+                                    '"></span><figcaption>' .
+                                    $actor->name .
+                                    '</figcaption></figure></a></li>';
+                            })->implode('') !!}
+                    </ul>
+                </div>
+            @endif
+            @if ($currentMovie->trailer_url)
             <div class="MvTbCn anmt clearfix" id="MvTb-Trailer">
-                @if ($currentMovie->trailer_url)
-                    @php
-                        parse_str(parse_url($currentMovie->trailer_url, PHP_URL_QUERY), $parse_url);
-                        $trailer_id = $parse_url['v'];
-                    @endphp
-                    <div class="TPlayerCn BgA">
-                        <div class="EcBgA">
-                            <div class="TPlayer">
-                                <div class="TPlayerTb Current clearfix" id="Opt1">
+                @php
+                    parse_str(parse_url($currentMovie->trailer_url, PHP_URL_QUERY), $parse_url);
+                    $trailer_id = $parse_url['v'];
+                @endphp
+                <div class="TPlayerCn BgA">
+                    <div class="EcBgA">
+                        <div class="TPlayer">
+                            <div class="TPlayerTb Current clearfix" id="Opt1">
 
-                                    <iframe width="560" height="315"
-                                        src="https://www.youtube.com/embed/{{ $trailer_id }}"></iframe>
-                                </div>
-                                <span class="AAIco-lightbulb_outline lgtbx-lnk"></span>
+                                <iframe width="560" height="315"
+                                    src="https://www.youtube.com/embed/{{ $trailer_id }}"></iframe>
                             </div>
+                            <span class="AAIco-lightbulb_outline lgtbx-lnk"></span>
                         </div>
                     </div>
-                @else
-                    Đang cập nhật...
-                @endif
+                </div>
             </div>
+            @endif
             <div class="MvTbCn anmt" id="MvTb-Image">
                 <div class="ImageMovieList owl-carousel">
                     <div class="item active">
                         @if ($currentMovie->poster_url)
                             <center>
-                                <img src="{{ $currentMovie->poster_url }}" alt="Hình ảnh {{ $currentMovie->name }}"
+                                <img src="{{ $currentMovie->poster_url ?: $currentMovie->thumb_url }}" alt="Hình ảnh {{ $currentMovie->name }}"
                                     class="img-responsive">
                             </center>
                             <div class="carousel-caption"> Hình ảnh {{ $currentMovie->name }}</div>
@@ -265,7 +271,7 @@
         <div class="Wdgt">
             <div class="Title">Bình luận</div>
             <div class="fb-comments" data-href="{{ $currentMovie->getUrl() }}" data-width="100%"
-                data-colorscheme="dark" data-numposts="5" data-order-by="reverse_time" data-lazy="true"></div>
+                data-colorscheme="light" data-numposts="5" data-order-by="reverse_time" data-lazy="true"></div>
         </div>
         <div class="Wdgt">
             <div class="Title">Có thể bạn muốn xem?</div>
