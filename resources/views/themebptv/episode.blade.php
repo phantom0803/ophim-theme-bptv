@@ -159,6 +159,11 @@
         @endif
 
         <div id="watch-block">
+            <style>
+                .jwplayer.jw-flag-aspect-mode {
+                    height: 100% !important;
+                }
+            </style>
             <div class="media-player uniad-player" id="media-player-box">
                 <div id="media-player" style="width: 100%;height: 100%;background:#1D1D1D;text-align: center">
                     <p style="height: 300px">Đang tải, đợi tí nhé ...</p>
@@ -212,7 +217,7 @@
         </div>
         <div class="Wdgt">
             <div class="Title">Bình luận</div>
-            <div class="fb-comments" data-href="{{ $currentMovie->getUrl() }}" data-width="100%"
+            <div class="fb-comments" style="width: 100%; background-color: #fff" data-href="{{ $currentMovie->getUrl() }}" data-width="100%"
                 data-colorscheme="light" data-numposts="5" data-order-by="reverse_time" data-lazy="true"></div>
         </div>
         <div class="Wdgt">
@@ -297,7 +302,7 @@
         function renderPlayer(type, link, id) {
             if (type == 'embed') {
                 if (vastAds) {
-                    wrapper.innerHTML = `<div id="fake_jwplayer"></div>`;
+                    wrapper.innerHTML = `<div id="fake_jwplayer" style="height: 100%"></div>`;
                     const fake_player = jwplayer("fake_jwplayer");
                     const objSetupFake = {
                         key: "{{ Setting::get('jwplayer_license') }}",
