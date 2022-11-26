@@ -3,59 +3,59 @@
 @section('breadcrumb')
     <ol class="breadcrumb" itemScope itemType="https://schema.org/BreadcrumbList">
         <li itemProp="itemListElement" itemScope itemType="http://schema.org/ListItem">
-            <a class="" itemProp="item" title="{{ setting('site_brand') }}" href="/">
+            <a class="" itemProp="item" title="Xem Phim" href="/">
                 <span class="" itemProp="name">
-                    <i class="fa fa-home"></i> {{ setting('site_brand') }}
+                    <i class="fa fa-home"></i> Xem Phim
                 </span>
-                <meta itemProp="position" content="1" />
             </a>
+            <meta itemProp="position" content="1" />
         </li>
-        <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-            <a class="" itemprop="item"
+        <li itemProp="itemListElement" itemScope="" itemType="http://schema.org/ListItem">
+            <a class="" itemProp="item"
                 href="/danh-sach/{{ $currentMovie->type == 'single' ? 'phim-le' : 'phim-bo' }}"
                 title="{{ $currentMovie->type == 'single' ? 'Phim lẻ' : 'Phim bộ' }}">
-                <span itemprop="name">
+                <span itemProp="name">
                     {{ $currentMovie->type == 'single' ? 'Phim lẻ' : 'Phim bộ' }}
                 </span>
             </a>
-            <meta itemprop="position" content="2">
+            <meta itemProp="position" content="2" />
         </li>
 
         @foreach ($currentMovie->regions as $region)
-            <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                <a class="" itemprop="item" href="{{ $region->getUrl() }}" title="{{ $region->name }}">
-                    <span itemprop="name">
+            <li itemProp="itemListElement" itemScope="" itemType="http://schema.org/ListItem">
+                <a class="" itemProp="item" href="{{ $region->getUrl() }}" title="{{ $region->name }}">
+                    <span itemProp="name">
                         {{ $region->name }}
                     </span>
                 </a>
-                <meta itemprop="position" content="3">
+                <meta itemProp="position" content="3" />
             </li>
         @endforeach
         @foreach ($currentMovie->categories as $category)
-            <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                <a class="" itemprop="item" href="{{ $category->getUrl() }}" title="{{ $category->name }}">
-                    <span itemprop="name">
+            <li itemProp="itemListElement" itemScope="" itemType="http://schema.org/ListItem">
+                <a class="" itemProp="item" href="{{ $category->getUrl() }}" title="{{ $category->name }}">
+                    <span itemProp="name">
                         {{ $category->name }}
                     </span>
                 </a>
-                <meta itemprop="position" content="3">
+                <meta itemProp="position" content="3" />
             </li>
         @endforeach
-        <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-            <a class="" itemprop="item" href="{{ $currentMovie->getUrl() }}" title="{{ $currentMovie->name }}">
-                <span itemprop="name">
+        <li itemProp="itemListElement" itemScope="" itemType="http://schema.org/ListItem">
+            <a class="" itemProp="item" href="{{ $currentMovie->getUrl() }}" title="{{ $currentMovie->name }}">
+                <span itemProp="name">
                     {{ $currentMovie->name }}
                 </span>
             </a>
-            <meta itemprop="position" content="4">
+            <meta itemProp="position" content="4" />
         </li>
-        <li class="active" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-            <span itemprop="item">
-                <span class="breadcrumb_last" itemprop="name">
+        <li class="active" itemProp="itemListElement" itemScope="" itemType="http://schema.org/ListItem">
+            <span itemProp="item">
+                <span class="breadcrumb_last" itemProp="name">
                     Tập {{ $episode->name }}
                 </span>
             </span>
-            <meta itemprop="position" content="4">
+            <meta itemProp="position" content="5" />
         </li>
     </ol>
 @endsection
@@ -119,8 +119,8 @@
                     </div>
                     <div style="display: none;" itemprop="aggregateRating" itemscope
                         itemtype="http://schema.org/AggregateRating">
-                        <span itemprop="ratingValue">{{ number_format($currentMovie->rating_star ?? 0, 1) }}</span>
-                        <meta itemprop="ratingcount" content="{{ $currentMovie->rating_count ?? 0 }}">
+                        <span itemprop="ratingValue">{{ number_format($currentMovie->rating_star ?? 8, 1) }}</span>
+                        <meta itemprop="ratingCount" content="{{ $currentMovie->rating_count ?? 1 }}">
                         <meta itemprop="bestRating" content="10" />
                         <meta itemprop="worstRating" content="1" />
                     </div>
