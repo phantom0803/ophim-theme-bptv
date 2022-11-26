@@ -108,13 +108,13 @@
                     <div class="post-ratings" itemscope itemtype="http://schema.org/Article">
                         <input id="hint_current" type="hidden" value="">
                         <input id="score_current" type="hidden"
-                            value="{{ number_format($currentMovie->rating_star ?? 0, 1) }}">
-                        <div id="star" data-score="{{ number_format($currentMovie->rating_star ?? 0, 1) }}"
+                            value="{{ number_format($currentMovie->rating_star ?? 8, 1) }}">
+                        <div id="star" data-score="{{ number_format($currentMovie->rating_star ?? 8, 1) }}"
                             style="cursor: pointer;"></div>
                         <br />
                         (<strong class="num-rating">{{ $currentMovie->rating_count ?? 0 }}</strong> lượt, đánh giá: <strong
-                            id="average_score">{{ number_format($currentMovie->rating_star ?? 0, 1) }}</strong>
-                        trên {{ $currentMovie->rating_count ?? 0 }})<br />
+                            id="average_score">{{ number_format($currentMovie->rating_star ?? 8, 1) }}</strong>
+                        trên 10)<br />
                         <span class="post-ratings-text" id="hint"></span>
                     </div>
                     <div style="display: none;" itemprop="aggregateRating" itemscope

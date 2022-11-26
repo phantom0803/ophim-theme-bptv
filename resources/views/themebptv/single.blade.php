@@ -109,19 +109,19 @@
                     <div class="post-ratings" itemscope itemtype="http://schema.org/Article">
                         <input id="hint_current" type="hidden" value="">
                         <input id="score_current" type="hidden"
-                            value="{{ number_format($currentMovie->rating_star ?? 0, 1) }}">
-                        <div id="star" data-score="{{ number_format($currentMovie->rating_star ?? 0, 1) }}"
+                            value="{{ number_format($currentMovie->rating_star ?? 8, 1) }}">
+                        <div id="star" data-score="{{ number_format($currentMovie->rating_star ?? 8, 1) }}"
                             style="cursor: pointer;"></div>
                         <br />
                         (<strong class="num-rating">{{ $currentMovie->rating_count ?? 1 }}</strong> lượt, đánh giá: <strong
-                            id="average_score">{{ number_format($currentMovie->rating_star ?? 0, 1) }}</strong>
+                            id="average_score">{{ number_format($currentMovie->rating_star ?? 8, 1) }}</strong>
                         trên 10)<br />
                         <span class="post-ratings-text" id="hint"></span>
                     </div>
                     <div style="display: none;" itemprop="aggregateRating" itemscope
                         itemtype="http://schema.org/AggregateRating">
                         <span itemprop="ratingValue">{{ number_format($currentMovie->rating_star ?? 8, 1) }}</span>
-                        <meta itemprop="ratingCount" content="{{ $currentMovie->rating_count && $currentMovie->rating_count > 0 ?? 1 }}">
+                        <meta itemprop="ratingCount" content="{{ $currentMovie->rating_count ?? 1 }}">
                         <meta itemprop="bestRating" content="10" />
                         <meta itemprop="worstRating" content="1" />
                     </div>
