@@ -10,17 +10,6 @@
             </a>
             <meta itemProp="position" content="1" />
         </li>
-        <li itemProp="itemListElement" itemScope="" itemType="http://schema.org/ListItem">
-            <a class="" itemProp="item"
-                href="/danh-sach/{{ $currentMovie->type == 'single' ? 'phim-le' : 'phim-bo' }}"
-                title="{{ $currentMovie->type == 'single' ? 'Phim lẻ' : 'Phim bộ' }}">
-                <span itemProp="name">
-                    {{ $currentMovie->type == 'single' ? 'Phim lẻ' : 'Phim bộ' }}
-                </span>
-            </a>
-            <meta itemProp="position" content="2" />
-        </li>
-
         @foreach ($currentMovie->regions as $region)
             <li itemProp="itemListElement" itemScope="" itemType="http://schema.org/ListItem">
                 <a class="" itemProp="item" href="{{ $region->getUrl() }}" title="{{ $region->name }}">
@@ -68,7 +57,7 @@
                 <h2 class="SubTitle">{{ $currentMovie->origin_name }}</h2>
                 <div class="Image">
                     <figure class="Objf">
-                        <img width="180" height="260" src="{{ $currentMovie->thumb_url }}"
+                        <img width="180" height="260" src="{{ $currentMovie->getThumbUrl() }}"
                             class="attachment-img-mov-md size-img-mov-md wp-post-image"
                             alt="{{ $currentMovie->name }} - {{ $currentMovie->origin_name }}" />
                     </figure>
@@ -102,25 +91,25 @@
             <footer class="ClFx">
                 <div class="VotesCn">
                     <div class="Prct">
-                        <div id="TPVotes" data-percent="{{ number_format($currentMovie->rating_star * 10 ?? 0, 0) }}">
+                        <div id="TPVotes" data-percent="{{$currentMovie->getRatingStar()}}">
                         </div>
                     </div>
                     <div class="post-ratings" itemscope itemtype="http://schema.org/Article">
                         <input id="hint_current" type="hidden" value="">
                         <input id="score_current" type="hidden"
-                            value="{{ number_format($currentMovie->rating_star ?? 8, 1) }}">
-                        <div id="star" data-score="{{ number_format($currentMovie->rating_star ?? 8, 1) }}"
+                            value="{{$currentMovie->getRatingStar()}}">
+                        <div id="star" data-score="{{$currentMovie->getRatingStar()}}"
                             style="cursor: pointer;"></div>
                         <br />
-                        (<strong class="num-rating">{{ $currentMovie->rating_count ?? 0 }}</strong> lượt, đánh giá: <strong
-                            id="average_score">{{ number_format($currentMovie->rating_star ?? 8, 1) }}</strong>
+                        (<strong class="num-rating">{{$currentMovie->getRatingCount()}}</strong> lượt, đánh giá: <strong
+                            id="average_score">{{$currentMovie->getRatingStar()}}</strong>
                         trên 10)<br />
                         <span class="post-ratings-text" id="hint"></span>
                     </div>
                     <div style="display: none;" itemprop="aggregateRating" itemscope
                         itemtype="http://schema.org/AggregateRating">
-                        <span itemprop="ratingValue">{{ number_format($currentMovie->rating_star ?? 8, 1) }}</span>
-                        <meta itemprop="ratingCount" content="{{ $currentMovie->rating_count ?? 1 }}">
+                        <span itemprop="ratingValue">{{$currentMovie->getRatingStar()}}</span>
+                        <meta itemprop="ratingCount" content="{{$currentMovie->getRatingCount()}}">
                         <meta itemprop="bestRating" content="10" />
                         <meta itemprop="worstRating" content="1" />
                     </div>
@@ -131,9 +120,9 @@
                     <span class="View AAIco-remove_red_eye">{{ $currentMovie->view_total }} lượt xem</span>
                 </p>
             </footer>
-            @if ($currentMovie->poster_url)
+            @if ($currentMovie->getPosterUrl())
                 <div class="TPostBg Objf">
-                    <img class="TPostBg" src="{{ $currentMovie->poster_url }}"
+                    <img class="TPostBg" src="{{ $currentMovie->getPosterUrl() }}"
                         alt="{{ $currentMovie->name }} - {{ $currentMovie->origin_name }}">
                 </div>
             @endif
@@ -217,8 +206,10 @@
         </div>
         <div class="Wdgt">
             <div class="Title">Bình luận</div>
-            <div class="fb-comments" style="width: 100%; background-color: #fff" data-href="{{ $currentMovie->getUrl() }}" data-width="100%"
-                data-colorscheme="light" data-numposts="5" data-order-by="reverse_time" data-lazy="true"></div>
+            <div style="width: 100%; background-color: #fff">
+                <div class="fb-comments" data-href="{{ $currentMovie->getUrl() }}" data-width="100%"
+                    data-colorscheme="light" data-numposts="5" data-order-by="reverse_time" data-lazy="true"></div>
+            </div>
         </div>
         <div class="Wdgt">
             <div class="Title">Có thể bạn muốn xem?</div>
@@ -229,7 +220,7 @@
                             <a href="{{ $movie->getUrl() }}">
                                 <div class="Image">
                                     <figure class="Objf TpMvPlay AAIco-play_arrow"><img width="215" height="320"
-                                            src="{{ $movie->thumb_url }}"
+                                            src="{{ $movie->getThumbUrl() }}"
                                             class="attachment-thumbnail size-thumbnail wp-post-image"
                                             alt="{{ $movie->name }} - {{ $movie->origin_name }} ({{ $movie->publish_year }})"
                                             title="{{ $movie->name }} - {{ $movie->origin_name }} ({{ $movie->publish_year }})" />
@@ -360,7 +351,7 @@
                     aspectratio: "16:9",
                     width: "100%",
                     height: "100%",
-                    image: "{{ $currentMovie->poster_url ?: $currentMovie->thumb_url }}",
+                    image: "{{ $currentMovie->getPosterUrl() }}",
                     file: link,
                     playbackRateControls: true,
                     playbackRates: [0.25, 0.75, 1, 1.25],

@@ -6,7 +6,7 @@
         @foreach ($item['data'] as $movie)
         <li>
             <a title="{{ $movie->name }} - {{ $movie->origin_name }}" href="{{ $movie->getUrl() }}">
-                <img src="{{ $movie->poster_url ?: $movie->thumb_url }}"
+                <img src="{{ $movie->getPosterUrl() }}"
                     alt="{{ $movie->name }} - {{ $movie->origin_name }}" border="0">
                 <span>
                     <h3>{{ $movie->name }}</h3>

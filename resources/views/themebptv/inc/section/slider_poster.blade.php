@@ -7,7 +7,7 @@
                         <div class="Image">
                             <figure class="Objf">
                                 <img class="TPostBg"
-                                    src="{{$movie->poster_url}}"
+                                    src="{{$movie->getPosterUrl()}}"
                                     alt="{{$movie->name}}" title="{{$movie->name}}">
                             </figure>
                         </div>
@@ -17,7 +17,7 @@
                             <div class="Title">{{$movie->name}}</div>
                         </a>
                         <p class="Info">
-                            <span class="Vote AAIco-star">{{ number_format($movie->rating_star ?? 0, 1) }}</span>
+                            <span class="Vote AAIco-star">{{$movie->getRatingStar()}}</span>
                             <span class="Time AAIco-access_time">{{$movie->episode_current}}</span>
                             <span class="Date AAIco-date_range">{{$movie->publish_year}}</span>
                             <span class="Qlty">{{$movie->quality}} {{$movie->language}}</span>

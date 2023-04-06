@@ -4,7 +4,7 @@
         <a href="{{ $movie->getUrl() }}">
             <div class="Image">
                 <figure class="Objf TpMvPlay AAIco-play_arrow">
-                    <img width="215" height="320" src="{{ $movie->thumb_url }}"
+                    <img width="215" height="320" src="{{ $movie->getThumbUrl() }}"
                         class="attachment-thumbnail size-thumbnail wp-post-image"
                         alt="{{ $movie->name }} - {{ $movie->origin_name }} ({{ $movie->publish_year }})"
                         title="{{ $movie->name }} - {{ $movie->origin_name }} ({{ $movie->publish_year }})" />
@@ -18,7 +18,7 @@
         <div class="TPMvCn anmt">
             <div class="Title">{{ $movie->name }}</div>
             <p class="Info">
-                <span class="Vote AAIco-star">{{ number_format($movie->rating_star ?? 0, 1) }}</span>
+                <span class="Vote AAIco-star">{{$movie->getRatingStar()}}</span>
                 <span class="Time AAIco-access_time">{{ $movie->episode_time }}</span>
                 <span class="Date AAIco-date_range">{{ $movie->publish_year }}</span>
             </p>

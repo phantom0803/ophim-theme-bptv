@@ -8,7 +8,7 @@
                         <a href="{{ $movie->getUrl() }}">
                             <div class="Image">
                                 <figure class="Objf TpMvPlay AAIco-play_arrow"><img width="215" height="320"
-                                        src="{{ $movie->thumb_url }}"
+                                        src="{{ $movie->getThumbUrl() }}"
                                         class="attachment-thumbnail size-thumbnail wp-post-image"
                                         alt="{{ $movie->name }} - {{ $movie->origin_name }} ({{ $movie->publish_year }})"
                                         title="{{ $movie->name }} - {{ $movie->origin_name }} ({{ $movie->publish_year }})" />
