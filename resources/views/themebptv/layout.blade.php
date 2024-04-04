@@ -8,12 +8,25 @@
         foreach ($lists as $list) {
             if (trim($list)) {
                 $list = explode('|', $list);
-                [$label, $relation, $field, $val, $sortKey, $alg, $limit, $template] = array_merge($list, ['Phim hot', '', 'type', 'series', 'view_total', 'desc', 4, 'top_thumb']);
+                [$label, $relation, $field, $val, $sortKey, $alg, $limit, $template] = array_merge($list, [
+                    'Phim hot',
+                    '',
+                    'type',
+                    'series',
+                    'view_total',
+                    'desc',
+                    4,
+                    'top_thumb',
+                ]);
                 try {
                     $data[] = [
                         'label' => $label,
                         'template' => $template,
-                        'data' => \Ophim\Core\Models\Movie::when($relation, function ($query) use ($relation, $field, $val) {
+                        'data' => \Ophim\Core\Models\Movie::when($relation, function ($query) use (
+                            $relation,
+                            $field,
+                            $val,
+                        ) {
                             $query->whereHas($relation, function ($rel) use ($field, $val) {
                                 $rel->where($field, $val);
                             });
@@ -106,6 +119,31 @@
                 return false;
             });
         })
+
+        // Lazyload image
+        document.addEventListener("DOMContentLoaded", function() {
+            var lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+
+            if ("IntersectionObserver" in window) {
+                let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            let lazyImage = entry.target;
+                            lazyImage.src = lazyImage.dataset.src;
+                            lazyImage.classList.remove("lazy");
+                            lazyImageObserver.unobserve(lazyImage);
+                        }
+                    });
+                });
+
+                lazyImages.forEach(function(lazyImage) {
+                    lazyImageObserver.observe(lazyImage);
+                });
+            } else {
+                // Possibly fall back to event handlers here
+            }
+        });
+        // End lazy load image
     </script>
     {!! setting('site_scripts_google_analytics') !!}
 @endsection
